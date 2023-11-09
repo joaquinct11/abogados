@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
+            $table->string('ap_paterno');
+            $table->string('ap_materno');
+            $table->string('domicilio');
+            $table->string('telefono');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('id_identidad');
+            $table->foreign('id_identidad')->references('id_identidad')->on('identidad');
+            $table->unsignedBigInteger('id_rol');
+            $table->string('identidad');
+            $table->foreign('id_rol')->references('id_rol')->on('rol');
+            $table->string('password');
+            $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->timestamps();
+        });        
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+
