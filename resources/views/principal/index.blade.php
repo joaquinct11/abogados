@@ -3,50 +3,75 @@
 @section('title', 'ESTUDIO ATC')
 
 @section('content_header')
-    <h1>ESTUDIO ATC</h1>
 @stop
 
 @section('content')
 <br>
-<h1>INDEX PRINCIPAL</h1>
-<!-- <a href="incidencias/create" class="btn btn-success">NUEVO INCIDENCIA</a>
-<hr>
-<table id="incidencias" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
-    <thead class="bg-primary text-white">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">NOMBRE REGISTRO</th>
-            <th scope="col">TIPO</th>
-            <th scope="col">DESCRIPCIÓN</th>
-            <th scope="col">FECHA REGISTRO</th>
-            <th scope="col">SOLUCIÓN</th>
-            <th scope="col">FECHA SOLUCIÓN</th>
-            <th scope="col">ESTADO</th>
-                <th scope="col">OPCIONES</th>
-        </tr>
-    </thead>
-    <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                        <form action="" method="POST">
-                            <a href="" class="btn btn-info">Editar</a>
-                            <a href="" class="btn btn-secondary">Solucionar</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Borrar</button>
-                        </form>
-                </td>
-            </tr>
-    </tbody>
-</table> -->
+<div class="container-fluid">
+    <h4>Menú Principal</h4><br>
+    <div class="row">
+        <!-- Contenedor de usuarios (color verde)-->
+        <div class="col-lg-3 col-6" id="usuarios-box">
+            <div class="small-box bg-success" style="height: 220px;">
+                <div class="inner">
+                    <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
+                    </h2>
+                    <h5>Total de usuarios</h5>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i> <!--Icono de usuario-->
+                </div>
+                <a href="usuarios" class="small-box-footer">Más info <i
+                        class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Contenedor de enfermeros (color lúcuma)-->
+        <div class="col-lg-3 col-6" id="enfermeros-box">
+            <div class="small-box bg-warning" style="height: 220px;">
+                <div class="inner">
+                    <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
+                    </h2>
+                    <h5>Propiedades</h5>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-fw fa-building"></i> <!--Icono de enfermero-->
+                </div>
+                <a href="propiedades" class="small-box-footer">Más info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- Contenedor de administradores (color rojo)-->
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger" style="height: 220px;">
+                <div class="inner">
+                    <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
+                    </h2>
+                    <h5>Jurídicas</h5>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-fw fa-file-invoice"></i> <!--Icono de usuario admin-->
+                </div>
+                <a href="" class="small-box-footer">Más info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info" style="height: 220px;">
+                <div class="inner">
+                    <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
+                    </h2>
+                    <h5>Judiciales/Naturales</h5>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-fw fa-file"></i> <!--Icono de usuario admin-->
+                </div>
+                <a href="" class="small-box-footer">Más info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

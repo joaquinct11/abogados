@@ -8,9 +8,10 @@ use App\Models\User;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+{
+    $this->middleware('auth');
+}
     public function index()
     {
         $usuarios=User::all();
@@ -80,7 +81,8 @@ class UsuarioController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $usuario=User::find($id);
+        return view('usuario.edit')->with('usuario',$usuario);
     }
 
     /**
@@ -88,7 +90,36 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $name = $request->get('name');
+        $ap_paterno = $request->get('ap_paterno');
+        $ap_materno = $request->get('ap_materno');
+        $id_rol = $request->get('id_rol');
+        $domicilio = $request->get('domicilio');
+        $telefono = $request->get('telefono');
+        $email = $request->get('email');
+        $id_identidad = $request->get('id_identidad');
+        $identidad = $request->get('identidad');
+        $password = $request->get('password');
+        $password1 = $request->get('password1');
+
+        if ($password !== $password1) {
+            $error_message = 'Las contraseñas no coinciden';
+            return redirect("/usuarios/{$id}/edit")->with('error', $error_message);
+        }else{
+            $usuario = User::find($id);
+            $usuario->name = $request->get('name');
+            $usuario->ap_paterno = $request->get('ap_paterno');
+            $usuario->ap_materno = $request->get('ap_materno');
+            $usuario->id_rol = $request->get('id_rol');
+            $usuario->domicilio = $request->get('domicilio');
+            $usuario->telefono = $request->get('telefono');
+            $usuario->email = $request->get('email');
+            $usuario->id_identidad = $request->get('id_identidad');
+            $usuario->identidad = $request->get('identidad');
+            $usuario->password = bcrypt($password);
+            $usuario->save();
+            return redirect('/usuarios');
+        }
     }
 
     /**

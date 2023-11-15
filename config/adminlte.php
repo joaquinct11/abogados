@@ -315,27 +315,22 @@ return [
         //     'label_color' => 'success',
         // ],
         ['header' => 'OPCIONES'],
-        [
-            'text' => 'profile',
-            // 'url'  => 'admin/settings',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            // 'url'  => 'admin/settings',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // [
+        //     'text' => 'profile',
+        //     // 'url'  => 'admin/settings',
+        //     'url'  => '#',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     // 'url'  => 'admin/settings',
+        //     'url'  => '#',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
             'text' => 'Usuarios',
             'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-address-book',
-        ],
-        [
-            'text' => 'Clientes',
-            'url'  => 'clientes',
-            'icon' => 'far fa-fw fa-address-book',
         ],
         [
             'text'    => 'ÁREAS',
@@ -344,7 +339,7 @@ return [
                 [
                     'text' => 'Propiedades',
                     'icon'    => 'fas fa-fw fa-building',
-                    'url'  => '#',
+                    'url'  => 'propiedades',
                 ],
                 [
                     'text' => 'Jurídicas',

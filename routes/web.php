@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UsuarioController;
-
+use App\Http\Controllers\PropiedadesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +31,5 @@ Route::middleware([
 
 Route::resource('clientes', ClienteController::class);
 Route::resource('usuarios', UsuarioController::class);
+Route::resource('propiedades', PropiedadesController::class);
+
