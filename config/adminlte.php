@@ -342,12 +342,12 @@ return [
                     'url'  => 'propiedades',
                 ],
                 [
-                    'text' => 'Jurídicas',
+                    'text' => 'Judiciales',
                     'icon'    => 'fas fa-fw fa-file-invoice',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'Judiciales/Naturales',
+                    'text' => 'Jurídicas/Naturales',
                     'icon'    => 'fas fa-fw fa-file',
                     'url'  => '#',
                 ],
@@ -355,7 +355,7 @@ return [
         ],
         [
             'text' => 'Administrativos (PAGOS)',
-            'url'  => '#',
+            'url'  => 'pagos',
             'icon' => 'fas fa-fw fa-donate',
         ],
         // ['header' => 'labels'],

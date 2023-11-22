@@ -23,9 +23,6 @@ return new class extends Migration
             $table->date('fecha_fin')->nullable();
             $table->string('acto');
             $table->string('otros')->nullable();
-            $table->float('monto_total')->nullable();
-            $table->float('adelanto')->nullable();
-            $table->float('restante')->nullable();
             $table->timestamps();
         });
         

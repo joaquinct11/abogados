@@ -41,7 +41,7 @@
                 <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1feEux2M-DDGCVmmronGbBqPYsaAMoNIe?usp=drive_link" target="_blank">Drive</a></td>
                 <td>
                     <form action="{{ route('propiedades.destroy', $propiedad->id_expediente) }}" method="POST" style="display: inline">
-                        <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detalleCasoModal">
+                        <a href="/propiedades/{{ $propiedad->id_expediente }}/edit" class="btn btn-info">
                             <i class="fas fa-search"></i>
                         </a>
                         <a href="/propiedades/{{ $propiedad->id_expediente }}/edit" class="btn btn-primary">
@@ -59,27 +59,6 @@
     @endforeach
     </tbody>
 </table>
-<!-- Modal para detalles del caso -->
-<div class="modal fade" id="detalleCasoModal" tabindex="-1" aria-labelledby="detalleCasoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detalleCasoModalLabel">Detalles del Caso</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Agrega aquí el contenido del modal con detalles específicos del caso -->
-                    <p>Cliente: <span id="clienteDetalle"></span></p>
-                    <p>Área: <span id="areaDetalle"></span></p>
-                    <p>Acto: <span id="actoDetalle"></span></p>
-                    <!-- Puedes agregar más detalles según sea necesario -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @stop
 
 @section('css')
@@ -204,6 +183,25 @@
                 }
             });
         });
+         // Agregar colores a las filas según las fechas
+        $('#propiedades tbody tr').each(function() {
+            var fechaIngreso = $(this).find('td:eq(6)').text(); // Índice 6 es la columna de fecha de ingreso
+            var fechaIngresoMoment = moment(fechaIngreso, 'DD-MM-YYYY');
+            var hoy = moment();
+            
+            // Calcular la diferencia en días
+            var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
+
+            // Aplicar estilos según la diferencia en días
+            if (diasDiferencia >= 7) {
+                $(this).css('background-color', '#FADBD8'); // Rojo pastel
+            } else if (diasDiferencia >= 5) {
+                $(this).css('background-color', '#FDEBD0'); // Naranja pastel
+            } else if (diasDiferencia <= 2) {
+                $(this).css('background-color', '#D5F5E3'); // Verde pastel
+            }
+        });
+
     });
 </script>
 <script>

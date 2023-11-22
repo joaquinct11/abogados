@@ -68,28 +68,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="" class="form-label">MONTO TOTAL</label>
-                <input id="monto_total" name="monto_total" type="text" class="form-control" tabindex="1">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="" class="form-label">ADELANTO</label>
-                <input id="adelanto" name="adelanto" type="text" class="form-control" tabindex="1">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="" class="form-label">RESTANTE</label>
-                <input id="restante" name="restante" type="text" class="form-control" tabindex="1" readonly>
-            </div>
-        </div>
-    </div>
     <div class="mb-3">
         <a href="/propiedades" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>

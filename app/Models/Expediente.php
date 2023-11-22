@@ -17,6 +17,7 @@ class Expediente extends Model
         return $this->belongsTo(User::class, 'id');
     }
 
+
     protected $primaryKey = 'id_expediente'; // Utiliza id_expediente como clave primaria
     public $incrementing = false;
 }

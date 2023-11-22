@@ -67,31 +67,11 @@
     <div class="row">
         <div class="col-md-6">
             <label for="" class="form-label">FECHA INGRESO</label>
-            <input id="fecha_ingreso" name="fecha_ingreso" type="text" class="form-control" value="{{$propiedad->fecha_ingreso}}">
+            <input id="fecha_ingreso" name="fecha_ingreso" type="date" class="form-control" value="{{$propiedad->fecha_ingreso}}">
         </div>
         <div class="col-md-6">
             <label for="" class="form-label">FECHA FIN</label>
-            <input id="fecha_fin" name="fecha_fin" type="text" class="form-control" value="{{$propiedad->fecha_fin}}">
-        </div>
-    </div>
-</div>
-<div class="mb-3">
-    <div class="row">
-        <div class="col-md-6">
-            <label for="" class="form-label">MONTO TOTAL</label>
-            <input id="monto_total" name="monto_total" type="text" class="form-control" value="{{$propiedad->monto_total}}">
-        </div>
-        <div class="col-md-6">
-            <label for="" class="form-label">ADELANTO</label>
-            <input id="adelanto" name="adelanto" type="text" class="form-control" value="{{$propiedad->adelanto}}">
-        </div>
-    </div>
-</div>
-<div class="mb-3">
-    <div class="row">
-        <div class="col-md-6">
-            <label for="" class="form-label">RESTANTE</label>
-            <input id="restante" name="restante" type="text" class="form-control" value="{{$propiedad->restante}}" readonly>
+            <input id="fecha_fin" name="fecha_fin" type="date" class="form-control" value="{{$propiedad->fecha_fin}}">
         </div>
     </div>
 </div>

@@ -47,7 +47,7 @@
                 <div class="inner">
                     <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
                     </h2>
-                    <h5>Jurídicas</h5>
+                    <h5>Judiciales</h5>
                 </div>
                 <div class="icon">
                     <i class="fas fa-fw fa-file-invoice"></i> <!--Icono de usuario admin-->
@@ -61,7 +61,7 @@
                 <div class="inner">
                     <h2 style="margin-top: 50px; font-size: 40px; font-weight: bold;">
                     </h2>
-                    <h5>Judiciales/Naturales</h5>
+                    <h5>Jurídicas/Naturales</h5>
                 </div>
                 <div class="icon">
                     <i class="fas fa-fw fa-file"></i> <!--Icono de usuario admin-->

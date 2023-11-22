@@ -51,7 +51,6 @@ class PropiedadesController extends Controller
     public function store(Request $request)
     {
         // Validar y procesar los datos del formulario
-
         // Generar el número único utilizando la función
         //$codigoExpediente = $this->generarNumeroUnico();
 
@@ -62,10 +61,7 @@ class PropiedadesController extends Controller
         $acto = $request->get('acto');
         $fecha_ingreso = $request->get('fecha_ingreso');
         $fecha_fin = $request->get('fecha_fin');
-        $monto_total = $request->get('monto_total');
-        $adelanto = $request->get('adelanto');
-        $restante = $request->get('restante');
-        if (empty($cliente) || empty($monto_total) || empty($adelanto)) {
+        if (empty($cliente)) {
             $error_message = 'Por favor, completa todos los campos';
             return redirect('/propiedades/create')->with('error', $error_message);
         }else if (empty($otros)){
@@ -78,9 +74,6 @@ class PropiedadesController extends Controller
             $expedientes->acto = $acto;
             $expedientes->fecha_ingreso = $fecha_ingreso;
             $expedientes->fecha_fin = $fecha_fin;
-            $expedientes->monto_total = $monto_total;
-            $expedientes->adelanto = $adelanto;
-            $expedientes->restante = $restante;
             $expedientes->save();
             return redirect('/propiedades');
         }
@@ -94,9 +87,6 @@ class PropiedadesController extends Controller
             $expedientes->acto = $acto;
             $expedientes->fecha_ingreso = $fecha_ingreso;
             $expedientes->fecha_fin = $fecha_fin;
-            $expedientes->monto_total = $monto_total;
-            $expedientes->adelanto = $adelanto;
-            $expedientes->restante = $restante;
             $expedientes->save();
             return redirect('/propiedades');
         }
@@ -132,10 +122,7 @@ class PropiedadesController extends Controller
         $acto = $request->get('acto');
         $fecha_ingreso = $request->get('fecha_ingreso');
         $fecha_fin = $request->get('fecha_fin');
-        $monto_total = $request->get('monto_total');
-        $adelanto = $request->get('adelanto');
-        $restante = $request->get('restante');
-        if (empty($cliente) || empty($monto_total) || empty($adelanto)) {
+        if (empty($cliente)) {
             $error_message = 'Por favor, completa todos los campos';
             return redirect('/propiedades/create')->with('error', $error_message);
         }else if (empty($otros)){
@@ -147,9 +134,6 @@ class PropiedadesController extends Controller
             $expediente->acto = $request->get('acto');
             $expediente->fecha_ingreso = $request->get('fecha_ingreso');
             $expediente->fecha_fin = $request->get('fecha_fin');
-            $expediente->monto_total = $request->get('monto_total');
-            $expediente->adelanto = $request->get('adelanto');
-            $expediente->restante = $request->get('restante');
             $expediente->save();
             return redirect('/propiedades');
         }
@@ -162,9 +146,6 @@ class PropiedadesController extends Controller
             $expediente->acto = $request->get('acto');
             $expediente->fecha_ingreso = $request->get('fecha_ingreso');
             $expediente->fecha_fin = $request->get('fecha_fin');
-            $expediente->monto_total = $request->get('monto_total');
-            $expediente->adelanto = $request->get('adelanto');
-            $expediente->restante = $request->get('restante');
             $expediente->save();
             return redirect('/propiedades');
         }
