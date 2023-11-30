@@ -11,14 +11,14 @@
     <!-- Otros enlaces -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<form action="/propiedades/{{$propiedad->id_expediente}}" method="POST">
+<form action="/propiedades/{{$propiedad->id}}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-3">
         <div class="row">
             <div class="col-md-6">
                 <label for="" class="form-label">ABOGADO</label>
-                <select id="id" name="id" class="form-control">
+                <select id="id_usuario" name="id_usuario" class="form-control">
                     <option value="1" @if($propiedad->id == 'JOAQUIN') selected @endif>JOAQUIN</option>
                 </select>
             </div>

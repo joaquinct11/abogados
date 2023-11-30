@@ -30,7 +30,7 @@
     @foreach ($propiedades as $propiedad)
         @if($propiedad->area->id_area == 1)
             <tr>
-                <td>{{$propiedad->id_expediente}}</td>
+                <td>{{$propiedad->numero_expediente}}</td>
                 <td>{{$propiedad->user->name}}</td>
                 <td>{{$propiedad->cliente}}</td>
                 <td>{{$propiedad->area->nombre_area}}</td>
@@ -40,11 +40,11 @@
                 <td>{{$propiedad->fecha_fin}}</td>
                 <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1feEux2M-DDGCVmmronGbBqPYsaAMoNIe?usp=drive_link" target="_blank">Drive</a></td>
                 <td>
-                    <form action="{{ route('propiedades.destroy', $propiedad->id_expediente) }}" method="POST" style="display: inline">
-                        <a href="/propiedades/{{ $propiedad->id_expediente }}/edit" class="btn btn-info">
+                    <form action="{{ route('propiedades.destroy', $propiedad->id) }}" method="POST" style="display: inline">
+                        <a href="/propiedades/{{ $propiedad->id }}/edit" class="btn btn-info">
                             <i class="fas fa-search"></i>
                         </a>
-                        <a href="/propiedades/{{ $propiedad->id_expediente }}/edit" class="btn btn-primary">
+                        <a href="/propiedades/{{ $propiedad->id }}/edit" class="btn btn-primary">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @csrf
@@ -124,7 +124,7 @@
                     }
                 }
             ],
-            "pageLength": 5, // Mostrar solo 5 registros por página
+        "pageLength": 10,
             language: {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -163,6 +163,24 @@
                     }
                 }
             ],
+            "drawCallback": function (settings) {
+                // Aplicar colores a las filas después de cada dibujo de la tabla
+                $('#propiedades tbody tr').each(function () {
+                    var fechaIngreso = $(this).find('td:eq(6)').text();
+                    var fechaIngresoMoment = moment(fechaIngreso, 'DD-MM-YYYY');
+                    var hoy = moment();
+
+                    var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
+
+                    if (diasDiferencia >= 5) {
+                        $(this).css('background-color', '#FADBD8');
+                    } else if (diasDiferencia >= 3) {
+                        $(this).css('background-color', '#FDEBD0');
+                    } else if (diasDiferencia <= 2) {
+                        $(this).css('background-color', '#D5F5E3');
+                    }
+                });
+            }
         });
 
         // Agregar confirmación antes de eliminar la incidencia
@@ -183,25 +201,6 @@
                 }
             });
         });
-         // Agregar colores a las filas según las fechas
-        $('#propiedades tbody tr').each(function() {
-            var fechaIngreso = $(this).find('td:eq(6)').text(); // Índice 6 es la columna de fecha de ingreso
-            var fechaIngresoMoment = moment(fechaIngreso, 'DD-MM-YYYY');
-            var hoy = moment();
-            
-            // Calcular la diferencia en días
-            var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
-
-            // Aplicar estilos según la diferencia en días
-            if (diasDiferencia >= 7) {
-                $(this).css('background-color', '#FADBD8'); // Rojo pastel
-            } else if (diasDiferencia >= 5) {
-                $(this).css('background-color', '#FDEBD0'); // Naranja pastel
-            } else if (diasDiferencia <= 2) {
-                $(this).css('background-color', '#D5F5E3'); // Verde pastel
-            }
-        });
-
     });
 </script>
 <script>

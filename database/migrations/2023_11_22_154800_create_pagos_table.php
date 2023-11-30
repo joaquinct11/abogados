@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,15 +16,14 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id('id_pagos');
-            $table->string('id_expediente');
-            $table->foreign('id_expediente')->references('id_expediente')->on('expedientes');
+            $table->string('numero_expediente');
+            $table->foreign('numero_expediente')->references('numero_expediente')->on('expedientes');
             $table->float('monto_total')->nullable();
-            $table->float('adeltanto')->nullable();
-            $table->float('restante')->nullable();
-            $table->date('fecha_adelanto')->nullable();
-            $table->string('detalle')->nullable();
+            $table->date('fecha_monto_total')->nullable();
             $table->timestamps();
         });
+
+        
     }
 
     /**

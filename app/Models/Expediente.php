@@ -14,10 +14,26 @@ class Expediente extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
+    protected $fillable = [
+        'numero_expediente',
+        'id_usuario',
+        'id_area',
+        'cliente',
+        'nro_expediente',
+        'fecha_ingreso',
+        'fecha_fin',
+        'acto',
+        'otros',
+    ];
 
-    protected $primaryKey = 'id_expediente'; // Utiliza id_expediente como clave primaria
-    public $incrementing = false;
+
+    protected $table = 'expedientes';
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'numero_expediente', 'numero_expediente');
+    }
 }

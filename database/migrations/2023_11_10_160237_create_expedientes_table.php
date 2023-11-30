@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,9 +14,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expedientes', function (Blueprint $table) {
-            $table->string('id_expediente')->primary(); // Cambiado a string y configurado como clave primaria
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+            $table->id();  // Esto creará una columna id_expediente autoincremental
+            $table->string('numero_expediente')->unique();  // Esto será tu PR-número único
+            $table->unsignedBigInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->unsignedBigInteger('id_area');
             $table->foreign('id_area')->references('id_area')->on('areas');
             $table->string('cliente');
@@ -24,7 +27,9 @@ return new class extends Migration
             $table->string('acto');
             $table->string('otros')->nullable();
             $table->timestamps();
-        });
+        }); 
+        
+        
         
     }
 

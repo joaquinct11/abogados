@@ -30,13 +30,12 @@ class PropiedadesController extends Controller
     private function generarNumeroUnico()
     {
         // Obtener el último número único de la base de datos
-        $ultimoExpediente = Expediente::latest('id_expediente')->first();
+        $ultimoExpediente = Expediente::latest('id')->first();
 
         // Verificar si existen expedientes en la base de datos
         if ($ultimoExpediente) {
             // Obtener el número actual y sumar 1
-            $ultimoNumero = intval(str_replace("PR-", "", $ultimoExpediente->id_expediente));
-            $nuevoNumero = $ultimoNumero + 1;
+            $nuevoNumero = $ultimoExpediente->id + 1;
         } else {
             // Si no hay expedientes, comenzar desde 1
             $nuevoNumero = 1;
@@ -48,13 +47,15 @@ class PropiedadesController extends Controller
         return $codigoGenerado;
     }
 
+
+
     public function store(Request $request)
     {
         // Validar y procesar los datos del formulario
         // Generar el número único utilizando la función
         //$codigoExpediente = $this->generarNumeroUnico();
-
-        $id = $request->get('id');
+        $codigoExpediente = $this->generarNumeroUnico();
+        $id_usuario = $request->get('id_usuario');
         $id_area = $request->get('id_area');
         $otros = strtoupper($request->get('otros'));
         $cliente = strtoupper($request->get('cliente'));
@@ -64,30 +65,18 @@ class PropiedadesController extends Controller
         if (empty($cliente)) {
             $error_message = 'Por favor, completa todos los campos';
             return redirect('/propiedades/create')->with('error', $error_message);
-        }else if (empty($otros)){
-            $expedientes = new Expediente();
-            $expedientes->id_expediente = $this->generarNumeroUnico();
-            $expedientes->id = $id;
-            $expedientes->id_area = 1;
-            $expedientes->otros = '-';
-            $expedientes->cliente = $cliente;
-            $expedientes->acto = $acto;
-            $expedientes->fecha_ingreso = $fecha_ingreso;
-            $expedientes->fecha_fin = $fecha_fin;
-            $expedientes->save();
-            return redirect('/propiedades');
         }
         else{
-            $expedientes = new Expediente();
-            $expedientes->id_expediente = $this->generarNumeroUnico();
-            $expedientes->id = $id;
-            $expedientes->id_area = 1;
-            $expedientes->otros = $otros;
-            $expedientes->cliente = $cliente;
-            $expedientes->acto = $acto;
-            $expedientes->fecha_ingreso = $fecha_ingreso;
-            $expedientes->fecha_fin = $fecha_fin;
-            $expedientes->save();
+            $expediente = new Expediente();
+            $expediente->numero_expediente = $codigoExpediente; // Usar el nuevo campo
+            $expediente->id_usuario = $id_usuario;
+            $expediente->id_area = 1; // Puedes ajustar esto según tus necesidades
+            $expediente->otros = $otros ?: '-';
+            $expediente->cliente = $cliente;
+            $expediente->acto = $acto;
+            $expediente->fecha_ingreso = $fecha_ingreso;
+            $expediente->fecha_fin = $fecha_fin;
+            $expediente->save();
             return redirect('/propiedades');
         }
         
@@ -115,7 +104,7 @@ class PropiedadesController extends Controller
      */
     public function update(Request $request, string $id_expediente)
     {
-        $id = $request->get('id');
+        $id_usuario = $request->get('id_usuario');
         $id_area = $request->get('id_area');
         $otros = strtoupper($request->get('otros'));
         $cliente = strtoupper($request->get('cliente'));
@@ -127,7 +116,7 @@ class PropiedadesController extends Controller
             return redirect('/propiedades/create')->with('error', $error_message);
         }else if (empty($otros)){
             $expediente = Expediente::find($id_expediente);
-            $expediente->id = $request->get('id');
+            $expediente->id_usuario = $request->get('id_usuario');
             $expediente->id_area = $request->input('id_area', 1);
             $expediente->otros = $request->get('-');
             $expediente->cliente = $request->get('cliente');
@@ -139,7 +128,7 @@ class PropiedadesController extends Controller
         }
         else{
             $expediente = Expediente::find($id_expediente);
-            $expediente->id = $request->get('id');
+            $expediente->id_usuario = $request->get('id_usuario');
             $expediente->id_area = $request->input('id_area', 1);
             $expediente->otros = $request->get('otros');
             $expediente->cliente = $request->get('cliente');

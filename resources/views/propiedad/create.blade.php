@@ -17,7 +17,7 @@
     <div class="col-md-6">
         <div class="mb-3">
                 <label for="" class="form-label">ABOGADO</label>
-                <select name="id" id="id" class="form-control" tabindex="1">
+                <select name="id_usuario" id="id_usuario" class="form-control" tabindex="1">
                     <option value="1">JOAQUIN</option>
                 </select>
         </div>

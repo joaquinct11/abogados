@@ -16,23 +16,21 @@
         <tr>
             <th scope="col">ID EXPEDIENTE</th>
             <th scope="col">MONTO TOTAL</th>
-            <th scope="col">ADELANTO</th>
-            <th scope="col">RESTANTE</th>
-            <th scope="col">FECHA ADELANTO</th>
-            <th scope="col">DETALLE</th>
+            <th scope="col">FECHA MONTO</th>
             <th scope="col">OPCIONES</th>
         </tr>
     </thead>
     <tbody>
     @foreach ($pagos as $pago)
             <tr>
-                <td>{{$pago->expediente->id_expediente}}</td>
+                <td>{{$pago->expediente->numero_expediente}}</td>
                 <td>{{$pago->monto_total}}</td>
-                <td>{{$pago->adeltanto}}</td>
-                <td>{{$pago->restante}}</td>
-                <td>{{$pago->fecha_adelanto}}</td>
-                <td>{{$pago->detalle}}</td>
+                <td>{{$pago->fecha_monto_total}}</td>
                 <td>
+                    <!-- Botón adicional para abrir el modal -->
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#detalleModal{{$pago->id_pagos}}">
+                    <i class="fas fa-plus"></i>
+                </button>
                 <form action="{{ route('pagos.destroy', $pago->id_pagos) }}" method="POST" style="display: inline">
                     <a href="/pagos/{{ $pago->id_pagos }}/edit" class="btn btn-info">
                         <i class="fas fa-pencil-alt"></i>
@@ -48,6 +46,82 @@
     @endforeach
     </tbody>
 </table>
+<!-- Modal -->
+@foreach ($pagos as $pago)
+    <div class="modal fade" id="detalleModal{{$pago->id_pagos}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>ID del Expediente: {{$pago->expediente->numero_expediente}} </p>
+                    <p>Monto Total: {{$pago->monto_total}}</p>
+                    <p>Monto Restante: {{$pago->monto_total - $pago->detallesPagos->sum('adelanto')}}</p>
+
+                    <!-- Tabla para detalles adicionales -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Adelanto</th>
+                                <th>Fecha de Adelanto</th>
+                                <th>Detalle</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ($pago->detallesPagos)
+                                @foreach ($pago->detallesPagos as $detalle)
+                                    <tr>
+                                        <td>{{$detalle->adelanto}}</td>
+                                        <td>{{$detalle->fecha_adelanto}}</td>
+                                        <td>{{$detalle->detalle_adelanto}}</td>
+                                        <td>
+                                        <a href="/propiedades/{{ $detalle->id }}/edit" class="btn btn-primary">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="3">No hay detalles disponibles.</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+
+                    <!-- Formulario para agregar más detalles -->
+                    <form action="{{ route('agregar.detalle.pago', $pago->id_pagos) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="adelanto">Monto del Adelanto:</label>
+                            <input type="money" class="form-control" name="adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_adelanto">Fecha de Adelanto:</label>
+                            <input type="date" class="form-control" name="fecha_adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle_adelanto">Detalle:</label>
+                            <input type="text" class="form-control" name="detalle_adelanto" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Detalle</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
 @stop
 
 @section('css')
