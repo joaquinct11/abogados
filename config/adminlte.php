@@ -344,12 +344,12 @@ return [
                 [
                     'text' => 'Judiciales',
                     'icon'    => 'fas fa-fw fa-file-invoice',
-                    'url'  => '#',
+                    'url'  => 'judiciales',
                 ],
                 [
                     'text' => 'Jurídicas/Naturales',
                     'icon'    => 'fas fa-fw fa-file',
-                    'url'  => '#',
+                    'url'  => 'juridicas_naturales',
                 ],
             ],
         ],

@@ -52,7 +52,7 @@
                 <div class="icon">
                     <i class="fas fa-fw fa-file-invoice"></i> <!--Icono de usuario admin-->
                 </div>
-                <a href="" class="small-box-footer">Más info <i
+                <a href="judiciales" class="small-box-footer">Más info <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <div class="icon">
                     <i class="fas fa-fw fa-file"></i> <!--Icono de usuario admin-->
                 </div>
-                <a href="" class="small-box-footer">Más info <i
+                <a href="juridicas_naturales" class="small-box-footer">Más info <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>

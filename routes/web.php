@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PropiedadesController;
+use App\Http\Controllers\JudicialesController;
+use App\Http\Controllers\Juridicas_NaturalesController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\DetallesPagosController;
 /*
@@ -35,6 +37,8 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('propiedades', PropiedadesController::class);
 Route::resource('pagos', PagosController::class);
+Route::resource('judiciales', JudicialesController::class);
+Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
 Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'agregarDetallePago'])->name('agregar.detalle.pago');
 
 

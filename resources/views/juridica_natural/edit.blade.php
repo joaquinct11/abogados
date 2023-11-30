@@ -1,0 +1,137 @@
+@extends('adminlte::page')
+
+@section('title', 'ESTUDIO ATC')
+
+@section('content_header')
+<h2>EDITAR CASO</h2>
+@stop
+
+@section('content')
+<head>
+    <!-- Otros enlaces -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<form action="/juridicas_naturales/{{$juridica_natural->id}}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="" class="form-label">ABOGADO</label>
+                <select id="id_usuario" name="id_usuario" class="form-control">
+                    <option value="1" @if($juridica_natural->id == 'JOAQUIN') selected @endif>JOAQUIN</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">CLIENTE</label>
+                <input id="cliente" name="cliente" type="text" class="form-control" value="{{$juridica_natural->cliente}}">
+            </div>
+        </div>
+    </div>
+
+<div class="mb-3">
+    <div class="row">
+            <div class="col-md-6">
+                <label for="" class="form-label">AREA</label>
+                <input id="id_area" name="id_area" type="text" class="form-control" value="JURIDICAS NATURALES" readonly>
+                <input type="hidden" name="id_area" value="3">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">ACTO</label>
+                <select name="acto" id="acto" class="form-control">
+                    <option value="NOMBRAMIENTO DE JUNTA DIRECTIVA" @if($juridica_natural->acto == 'NOMBRAMIENTO DE JUNTA DIRECTIVA') selected @endif>NOMBRAMIENTO DE JUNTA DIRECTIVA</option>
+                    <option value="NOMBRAMIENTO DE DIRECTIVA COMUNAL" @if($juridica_natural->acto == 'NOMBRAMIENTO DE DIRECTIVA COMUNAL') selected @endif>NOMBRAMIENTO DE DIRECTIVA COMUNAL</option>
+                    <option value="CONSTITUCION DE EMPRESA COMUNAL" @if($juridica_natural->acto == 'CONSTITUCION DE EMPRESA COMUNAL') selected @endif>CONSTITUCION DE EMPRESA COMUNAL</option>
+                    <option value="OTORGAMIENTO DE PODER" @if($juridica_natural->acto == 'OTORGAMIENTO DE PODER') selected @endif>OTORGAMIENTO DE PODER</option>
+                    <option value="REVOCACION / REMOCION DE PODER" @if($juridica_natural->acto == 'REVOCACION / REMOCION DE PODER') selected @endif>REVOCACION / REMOCION DE PODER</option>
+                    <option value="CONSTITUCION DE ASOCIACION" @if($juridica_natural->acto == 'CONSTITUCION DE ASOCIACION') selected @endif>CONSTITUCION DE ASOCIACION</option>
+                    <option value="CONSTITUCION DE SOCIEDADES (SAC - SA)" @if($juridica_natural->acto == 'CONSTITUCION DE SOCIEDADES (SAC - SA)') selected @endif>CONSTITUCION DE SOCIEDADES (SAC - SA)</option>
+                    <option value="SUCESION INTESTADA" @if($juridica_natural->acto == 'SUCESION INTESTADA') selected @endif>SUCESION INTESTADA</option>
+                    <option value="RECTIFICACION DE NOMBRE DE DIRECTIVO" @if($juridica_natural->acto == 'RECTIFICACION DE NOMBRE DE DIRECTIVO') selected @endif>RECTIFICACION DE NOMBRE DE DIRECTIVO</option>
+                    <option value="OTROS" @if($juridica_natural->acto == 'OTROS') selected @endif>OTROS</option>
+                </select>
+            </div>
+    </div>
+</div>
+
+<div class="mb-3">
+    <div class="row">
+            <div class="col-md-6">
+            <label for="" class="form-label">OTROS</label>
+            <input id="otros" name="otros" type="text" class="form-control" value="{{$juridica_natural->otros}}">
+        </div>
+</div>
+</div>
+<div class="mb-3">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="" class="form-label">FECHA INGRESO</label>
+            <input id="fecha_ingreso" name="fecha_ingreso" type="date" class="form-control" value="{{$juridica_natural->fecha_ingreso}}">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">FECHA FIN</label>
+            <input id="fecha_fin" name="fecha_fin" type="date" class="form-control" value="{{$juridica_natural->fecha_fin}}">
+        </div>
+    </div>
+</div>
+
+    <div class="mb-3">
+        <a href="/juridicas_naturales" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+    </div>
+</form>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener referencias a los elementos del DOM
+        var actoSelect = document.getElementById('acto');
+        var otrosInput = document.getElementById('otros');
+
+        // Agregar evento onchange al campo "ACTO"
+        actoSelect.addEventListener('change', function() {
+            // Habilitar o deshabilitar el campo "Otros" según la selección
+            if (actoSelect.value === 'OTROS') {
+                otrosInput.removeAttribute('readonly');
+            } else {
+                otrosInput.setAttribute('readonly', 'readonly');
+            }
+        });
+
+        // Llamar al evento onchange inicialmente para establecer el estado inicial
+        actoSelect.dispatchEvent(new Event('change'));
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener referencias a los elementos del DOM
+        var montoTotalInput = document.getElementById('monto_total');
+        var adelantoInput = document.getElementById('adelanto');
+        var restanteInput = document.getElementById('restante');
+
+        // Función para calcular el RESTANTE
+        function calcularRestante() {
+            var montoTotal = parseFloat(montoTotalInput.value) || 0;
+            var adelanto = parseFloat(adelantoInput.value) || 0;
+
+            // Calcular el RESTANTE
+            var restante = montoTotal - adelanto;
+
+            // Actualizar el valor del campo "RESTANTE"
+            restanteInput.value = restante.toFixed(2);
+        }
+
+        // Agregar eventos onchange a los campos "MONTO TOTAL" y "ADELANTO"
+        montoTotalInput.addEventListener('input', calcularRestante);
+        adelantoInput.addEventListener('input', calcularRestante);
+
+        // Llamar a la función inicialmente para establecer el estado inicial
+        calcularRestante();
+    });
+</script>
+@stop
