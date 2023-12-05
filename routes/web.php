@@ -40,6 +40,7 @@ Route::resource('pagos', PagosController::class);
 Route::resource('judiciales', JudicialesController::class);
 Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
 Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'agregarDetallePago'])->name('agregar.detalle.pago');
+Route::delete('/eliminar-detalle-pago/{detalleId}', [DetallesPagosController::class, 'eliminar'])->name('eliminar.detalle.pago');
 
 
 
