@@ -42,10 +42,10 @@
                 <td>{{$propiedad->created_at}}</td>
                 <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1feEux2M-DDGCVmmronGbBqPYsaAMoNIe?usp=drive_link" target="_blank">Drive</a></td>
                 <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detalleModal{{$propiedad->numero_expediente}}">
+                    <i class="fas fa-search"></i>
+                    </button>
                     <form action="{{ route('propiedades.destroy', $propiedad->id) }}" method="POST" style="display: inline">
-                        <a href="/propiedades/{{ $propiedad->id }}/edit" class="btn btn-info">
-                            <i class="fas fa-search"></i>
-                        </a>
                         <a href="/propiedades/{{ $propiedad->id }}/edit" class="btn btn-primary">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
@@ -61,6 +61,88 @@
     @endforeach
     </tbody>
 </table>
+<!-- Modal -->
+@foreach ($propiedades as $propiedad)
+    <div class="modal fade" id="detalleModal{{$propiedad->numero_expediente}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Expediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>ID del Expediente: {{$propiedad->numero_expediente}} </p>
+
+                    <!-- Tabla para detalles adicionales -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sub Acto</th>
+                                <th>Ubicación</th>
+                                <th>Intervinientes</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th> 
+                                <th>Opciones</th>
+                            </tr>   
+                        </thead>
+                        <tbody>
+                            @if ($propiedad->detallesPagos)
+                                @foreach ($propiedad->detallesPagos as $detalle)
+                                    <tr>
+                                        <td>{{$detalle->adelanto}}</td>
+                                        <td>{{$detalle->fecha_adelanto}}</td>
+                                        <td>{{$detalle->detalle_adelanto}}</td>
+                                        <td>{{$detalle->fecha_adelanto}}</td>
+                                        <td>{{$detalle->detalle_adelanto}}</td>
+                                        <td>
+                                        <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6">No hay detalles disponibles.</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+
+                    <!-- Formulario para agregar más detalles -->
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="adelanto">Sub Acto:</label>
+                            <input type="money" class="form-control" name="adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle_adelanto">Ubicación:</label>
+                            <input type="text" class="form-control" name="detalle_adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle_adelanto">Intervinientes:</label>
+                            <input type="text" class="form-control" name="detalle_adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_adelanto">Fecha Inicio:</label>
+                            <input type="date" class="form-control" name="fecha_adelanto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_adelanto">Fecha Fin:</label>
+                            <input type="date" class="form-control" name="fecha_adelanto" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Detalle</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 @stop
 
 @section('css')

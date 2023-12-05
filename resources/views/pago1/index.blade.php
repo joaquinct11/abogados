@@ -64,7 +64,7 @@
                     <p>Monto Restante: {{$pago1->monto_total - $pago1->detallesPagos1->sum('adelanto')}}</p>
 
                     <!-- Tabla para detalles adicionales -->
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-detalles">
                         <thead>
                             <tr>
                                 <th>Adelanto</th>
@@ -142,6 +142,48 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        // ... Tu código existente ...
+
+        // Configuración de DataTables para la tabla dentro del modal
+        $('.table-detalles').DataTable({
+            "pageLength": 3,
+            "searching": false, // Desactiva la función de búsqueda
+            "lengthChange": false, // Desactiva el control para cambiar la cantidad de registros por página
+            language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        }
+        });
+
+        // ... Resto de tu código ...
+    });
+</script>
 <script>
     $(document).ready(function() {
         $('#pagos1').DataTable({
