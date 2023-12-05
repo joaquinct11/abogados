@@ -46,6 +46,7 @@ Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'ag
 Route::post('/agregar-detalle-pago1/{pago}', [DetallesPagos1Controller::class, 'agregarDetallePago1'])->name('agregar.detalle.pago1');
 
 Route::delete('/eliminar-detalle-pago/{detalleId}', [DetallesPagosController::class, 'eliminar'])->name('eliminar.detalle.pago');
+Route::delete('/eliminar-detalle-pago1/{detalleId}', [DetallesPagos1Controller::class, 'eliminar'])->name('eliminar.detalle.pago1');
 
 
 
