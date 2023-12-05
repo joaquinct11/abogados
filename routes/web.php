@@ -9,12 +9,9 @@ use App\Http\Controllers\Juridicas_NaturalesController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\Pagos1Controller;
 use App\Http\Controllers\DetallesPagosController;
-<<<<<<< HEAD
 use App\Http\Controllers\Pagos2Controller;
 use App\Http\Controllers\DetallesPagos2Controller;
-=======
 use App\Http\Controllers\DetallesPagos1Controller;
->>>>>>> b5ea2b64740f87dfbec0434c568920d01216eaea
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,14 +41,12 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('propiedades', PropiedadesController::class);
 Route::resource('pagos', PagosController::class);
-<<<<<<< HEAD
 Route::resource('pagos2', Pagos2Controller::class);
 Route::resource('judiciales', JudicialesController::class);
 Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
 Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'agregarDetallePago'])->name('agregar.detalle.pago');
 Route::post('/agregar-detalle-pago2/{pago}', [DetallesPagos2Controller::class, 'agregarDetallePago2'])->name('agregar.detalle.pago2');
 Route::delete('/eliminar-detalle-pago2/{detalleId}', [DetallesPagos2Controller::class, 'eliminar'])->name('eliminar.detalle.pago2');
-=======
 Route::resource('pagos1', Pagos1Controller::class);
 Route::resource('judiciales', JudicialesController::class);
 Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
@@ -61,7 +56,6 @@ Route::post('/agregar-detalle-pago1/{pago}', [DetallesPagos1Controller::class, '
 Route::delete('/eliminar-detalle-pago/{detalleId}', [DetallesPagosController::class, 'eliminar'])->name('eliminar.detalle.pago');
 Route::delete('/eliminar-detalle-pago1/{detalleId}', [DetallesPagos1Controller::class, 'eliminar'])->name('eliminar.detalle.pago1');
 
->>>>>>> b5ea2b64740f87dfbec0434c568920d01216eaea
 
 
 
