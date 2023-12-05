@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Juridicas_Naturales;
+use App\Models\User; // Asegúrate de importar el modelo User al inicio del archivo
 
 class Juridicas_NaturalesController extends Controller
 {
@@ -25,7 +26,8 @@ class Juridicas_NaturalesController extends Controller
      */
     public function create()
     {
-        return view('juridica_natural.create');
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('juridica_natural.create', ['usuarios' => $usuarios]);
     }
 
 
@@ -95,7 +97,8 @@ class Juridicas_NaturalesController extends Controller
     public function edit(string $id_expediente)
     {
         $juridica_natural=Juridicas_Naturales::find($id_expediente);
-        return view('juridica_natural.edit')->with('juridica_natural',$juridica_natural);
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('juridica_natural.edit',['usuarios' => $usuarios])->with('juridica_natural',$juridica_natural);
    
     }
 

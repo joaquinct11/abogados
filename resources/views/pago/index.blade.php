@@ -81,9 +81,7 @@
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
-                                        <a href="/propiedades/{{ $detalle->id }}/edit" class="btn btn-primary">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
+                                        
                                         </td>
                                     </tr>
                                 @endforeach

@@ -32,8 +32,6 @@ class DetallesPagosController extends Controller
         return redirect()->back()->with('success', 'Detalle agregado exitosamente');
     }
     
-
-
     public function index()
     {
     }

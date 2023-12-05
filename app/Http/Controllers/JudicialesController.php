@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Judiciales;
+use App\Models\User; // Asegúrate de importar el modelo User al inicio del archivo
 
 class JudicialesController extends Controller
 {
@@ -24,7 +25,8 @@ class JudicialesController extends Controller
      */
     public function create()
     {
-        return view('judicial.create');
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('judicial.create', ['usuarios' => $usuarios]);
     }
 
     private function generarNumeroUnico()
@@ -96,7 +98,8 @@ class JudicialesController extends Controller
     public function edit(string $id_expediente)
     {
         $judicial=Judiciales::find($id_expediente);
-        return view('judicial.edit')->with('judicial',$judicial);
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('judicial.edit',['usuarios' => $usuarios])->with('judicial',$judicial);
     }
 
     /**

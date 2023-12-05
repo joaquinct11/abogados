@@ -42,3 +42,6 @@ Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
 Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'agregarDetallePago'])->name('agregar.detalle.pago');
 
 
+
+
+

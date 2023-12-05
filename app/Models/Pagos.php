@@ -22,4 +22,9 @@ public function expediente()
 {
     return $this->belongsTo(Expediente::class, 'numero_expediente', 'numero_expediente');
 }
+
+public function judicial()
+{
+    return $this->belongsTo(Judiciales::class, 'numero_expediente', 'numero_expediente1');
+}
 }

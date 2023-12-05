@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Expediente;
+use App\Models\User; // Asegúrate de importar el modelo User al inicio del archivo
 
 class PropiedadesController extends Controller
 {
@@ -24,7 +25,8 @@ class PropiedadesController extends Controller
      */
     public function create()
     {
-        return view('propiedad.create');
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('propiedad.create', ['usuarios' => $usuarios]);
     }
 
     private function generarNumeroUnico()
@@ -96,7 +98,8 @@ class PropiedadesController extends Controller
     public function edit(string $id_expediente)
     {
         $propiedad=Expediente::find($id_expediente);
-        return view('propiedad.edit')->with('propiedad',$propiedad);
+        $usuarios = User::all(); // Obtén todos los usuarios de la base de datos
+        return view('propiedad.edit',['usuarios' => $usuarios])->with('propiedad',$propiedad);
     }
 
     /**

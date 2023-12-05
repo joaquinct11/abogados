@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('fecha_monto_total')->nullable();
             $table->timestamps();
         });
+        
 
         
     }

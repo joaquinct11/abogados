@@ -354,10 +354,31 @@ return [
             ],
         ],
         [
-            'text' => 'Administrativos (PAGOS)',
-            'url'  => 'pagos',
-            'icon' => 'fas fa-fw fa-donate',
+            'text'    => 'Administrativos (PAGOS)',
+            'icon'    => 'fas fa-fw fa-donate',
+            'submenu' => [
+                [
+                    'text' => 'Propiedades',
+                    'icon'    => 'fas fa-fw fa-money-bill',
+                    'url'  => 'pagos',
+                ],
+                [
+                    'text' => 'Judiciales',
+                    'icon'    => 'fas fa-fw fa-coins',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Jurídicas/Naturales',
+                    'icon'    => 'fas fa-fw fa-money-bill-wave',
+                    'url'  => '#',
+                ],
+            ],
         ],
+        // [
+        //     'text' => 'Administrativos (PAGOS)',
+        //     'url'  => 'pagos',
+        //     'icon' => 'fas fa-fw fa-donate',
+        // ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

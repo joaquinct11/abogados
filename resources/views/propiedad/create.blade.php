@@ -16,10 +16,12 @@
     <div class="row">
     <div class="col-md-6">
         <div class="mb-3">
-                <label for="" class="form-label">ABOGADO</label>
-                <select name="id_usuario" id="id_usuario" class="form-control" tabindex="1">
-                    <option value="1">JOAQUIN</option>
-                </select>
+            <label for="id_usuario" class="form-label">ABOGADO</label>
+            <select name="id_usuario" id="id_usuario" class="form-control" tabindex="1">
+                @foreach($usuarios as $usuario)
+                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">AREA</label>
