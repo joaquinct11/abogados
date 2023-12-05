@@ -7,7 +7,9 @@ use App\Http\Controllers\PropiedadesController;
 use App\Http\Controllers\JudicialesController;
 use App\Http\Controllers\Juridicas_NaturalesController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\Pagos1Controller;
 use App\Http\Controllers\DetallesPagosController;
+use App\Http\Controllers\DetallesPagos1Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +39,12 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('propiedades', PropiedadesController::class);
 Route::resource('pagos', PagosController::class);
+Route::resource('pagos1', Pagos1Controller::class);
 Route::resource('judiciales', JudicialesController::class);
 Route::resource('juridicas_naturales', Juridicas_NaturalesController::class);
 Route::post('/agregar-detalle-pago/{pago}', [DetallesPagosController::class, 'agregarDetallePago'])->name('agregar.detalle.pago');
+Route::post('/agregar-detalle-pago1/{pago}', [DetallesPagos1Controller::class, 'agregarDetallePago1'])->name('agregar.detalle.pago1');
+
 
 
 
