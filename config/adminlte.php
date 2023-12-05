@@ -370,7 +370,7 @@ return [
                 [
                     'text' => 'Jurídicas/Naturales',
                     'icon'    => 'fas fa-fw fa-money-bill-wave',
-                    'url'  => '#',
+                    'url'  => 'pagos2',
                 ],
             ],
         ],
