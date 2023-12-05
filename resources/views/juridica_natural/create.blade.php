@@ -15,7 +15,7 @@
     @csrf
     <div class="row">
     <div class="col-md-6">
-        <div class="mb-3">
+    <div class="mb-3">
             <label for="id_usuario" class="form-label">ABOGADO</label>
             <select name="id_usuario" id="id_usuario" class="form-control" tabindex="1">
                 @foreach($usuarios as $usuario)
@@ -41,16 +41,15 @@
         <div class="mb-3">
                 <label for="" class="form-label">ACTO</label>
                 <select name="acto" id="acto" class="form-control" tabindex="1">
-                    <option value="COMPRA VENTA">COMPRA VENTA</option>
-                    <option value="DONACION">DONACION</option>
-                    <option value="ADJUDICACION">ADJUDICACION</option>
-                    <option value="PRESCRIPCION ADQUISITIVA">PRESCRIPCION ADQUISITIVA</option>
-                    <option value="SUBDIVISION E INDEPENDIZACION">SUBDIVISION E INDEPENDIZACION</option>
-                    <option value="INMATRICULACION">INMATRICULACION</option>
-                    <option value="DECLARATORIA DE FABRICA">DECLARATORIA DE FABRICA</option>
-                    <option value="RECTIFICACION DE ASIENTOS REGISTRAL">RECTIFICACION DE ASIENTOS REGISTRAL</option>
-                    <option value="RECTIFICACION DE AREA">RECTIFICACION DE AREA</option>
-                    <option value="HABILITACION URBANA">HABILITACION URBANA</option>
+                <option value="NOMBRAMIENTO DE JUNTA DIRECTIVA">NOMBRAMIENTO DE JUNTA DIRECTIVA</option>
+                    <option value="NOMBRAMIENTO DE DIRECTIVA COMUNAL">NOMBRAMIENTO DE DIRECTIVA COMUNAL</option>
+                    <option value="CONSTITUCION DE EMPRESA COMUNAL">CONSTITUCION DE EMPRESA COMUNAL</option>
+                    <option value="OTORGAMIENTO DE PODER">OTORGAMIENTO DE PODER</option>
+                    <option value="REVOCACION / REMOCION DE PODER">REVOCACION / REMOCION DE PODER</option>
+                    <option value="CONSTITUCION DE ASOCIACION">CONSTITUCION DE ASOCIACION</option>
+                    <option value="CONSTITUCION DE SOCIEDADES (SAC - SA)">CONSTITUCION DE SOCIEDADES (SAC - SA)</option>
+                    <option value="SUCESION INTESTADA">SUCESION INTESTADA</option>
+                    <option value="RECTIFICACION DE NOMBRE DE DIRECTIVO">RECTIFICACION DE NOMBRE DE DIRECTIVO</option>
                     <option value="OTROS">OTROS</option>
                 </select>
         </div>

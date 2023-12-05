@@ -365,7 +365,7 @@ return [
                 [
                     'text' => 'Judiciales',
                     'icon'    => 'fas fa-fw fa-coins',
-                    'url'  => '#',
+                    'url'  => 'pagos1',
                 ],
                 [
                     'text' => 'Jurídicas/Naturales',

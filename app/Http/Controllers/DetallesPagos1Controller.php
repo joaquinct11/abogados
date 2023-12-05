@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Detalle_Pagos;
-use App\Models\Pagos;
+use App\Models\Detalle_Pagos1;
+use App\Models\Pagos1;
 
-class DetallesPagosController extends Controller
+class DetallesPagos1Controller extends Controller
 {
     
-    public function agregarDetallePago(Request $request, Pagos $pago)
+    public function agregarDetallePago1(Request $request, Pagos1 $pago)
     {
         // Valida los datos del formulario
         $request->validate([
@@ -20,7 +20,7 @@ class DetallesPagosController extends Controller
         ]);
     
         // Agrega el nuevo detalle al pago
-        $detalle = $pago->detallesPagos()->create([
+        $detalle = $pago->detallesPagos1()->create([
             'adelanto' => $request->input('adelanto'),
             'fecha_adelanto' => $request->input('fecha_adelanto'),
             'detalle_adelanto' => $request->input('detalle_adelanto'),
@@ -31,26 +31,26 @@ class DetallesPagosController extends Controller
     
         return redirect()->back()->with('success', 'Detalle agregado exitosamente');
     }
-
-    public function eliminar($detalleId)
-{
-    try {
-        // Buscar el detalle de pago por ID
-        $detallePago = Detalle_Pagos::findOrFail($detalleId);
-
-        // Eliminar el detalle de pago
-        $detallePago->delete();
-
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'error' => $e->getMessage()]);
-    }
-}
-
     
+    public function eliminar($detalleId)
+    {
+        try {
+            // Buscar el detalle de pago por ID
+            $detallePago = Detalle_Pagos1::findOrFail($detalleId);
+    
+            // Eliminar el detalle de pago
+            $detallePago->delete();
+    
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+
 
     public function index()
     {
+        //
     }
 
     /**

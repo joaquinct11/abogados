@@ -7,11 +7,11 @@
 
 @section('content')
 <br>
-<a href="pagos/create" class="btn btn-success">
+<a href="pagos1/create" class="btn btn-success">
     <i class="fas fa-fw fa-donate"></i> AGREGAR PAGO
 </a>
 <hr>
-<table id="pagos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
+<table id="pagos1" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>
             <th scope="col">ID EXPEDIENTE</th>
@@ -21,18 +21,18 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($pagos as $pago)
+    @foreach ($pagos1 as $pago1)
             <tr>
-                <td>{{$pago->expediente->numero_expediente}}</td>
-                <td>{{$pago->monto_total}}</td>
-                <td>{{$pago->fecha_monto_total}}</td>
+                <td>{{$pago1->judicial->numero_expediente}}</td>
+                <td>{{$pago1->monto_total}}</td>
+                <td>{{$pago1->fecha_monto_total}}</td>
                 <td>
                     <!-- Botón adicional para abrir el modal -->
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#detalleModal{{$pago->id_pagos}}">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#detalleModal{{$pago1->id_pagos}}">
                     <i class="fas fa-plus"></i>
                 </button>
-                <form action="{{ route('pagos.destroy', $pago->id_pagos) }}" method="POST" style="display: inline">
-                    <a href="/pagos/{{ $pago->id_pagos }}/edit" class="btn btn-info">
+                <form action="{{ route('pagos1.destroy', $pago1->id_pagos) }}" method="POST" style="display: inline">
+                    <a href="/pagos1/{{ $pago1->id_pagos }}/edit" class="btn btn-info">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     @csrf
@@ -47,8 +47,8 @@
     </tbody>
 </table>
 <!-- Modal -->
-@foreach ($pagos as $pago)
-    <div class="modal fade" id="detalleModal{{$pago->id_pagos}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($pagos1 as $pago1)
+    <div class="modal fade" id="detalleModal{{$pago1->id_pagos}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -59,9 +59,9 @@
                 </div>
                 <div class="modal-body">
                     <!-- Contenido del modal -->
-                    <p>ID del Expediente: {{$pago->expediente->numero_expediente}} </p>
-                    <p>Monto Total: {{$pago->monto_total}}</p>
-                    <p>Monto Restante: {{$pago->monto_total - $pago->detallesPagos->sum('adelanto')}}</p>
+                    <p>ID del Expediente: {{$pago1->judicial->numero_expediente}}</p>
+                    <p>Monto Total: {{$pago1->monto_total}}</p>
+                    <p>Monto Restante: {{$pago1->monto_total - $pago1->detallesPagos1->sum('adelanto')}}</p>
 
                     <!-- Tabla para detalles adicionales -->
                     <table class="table table-bordered">
@@ -74,14 +74,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($pago->detallesPagos)
-                                @foreach ($pago->detallesPagos as $detalle)
+                            @if ($pago1->detallesPagos1)
+                                @foreach ($pago1->detallesPagos1 as $detalle)
                                     <tr>
                                         <td>{{$detalle->adelanto}}</td>
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
+                                        
                                         </td>
                                     </tr>
                                 @endforeach
@@ -94,7 +95,7 @@
                     </table>
 
                     <!-- Formulario para agregar más detalles -->
-                    <form action="{{ route('agregar.detalle.pago', $pago->id_pagos) }}" method="POST">
+                    <form action="{{ route('agregar.detalle.pago1', $pago1->id_pagos) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="adelanto">Monto del Adelanto:</label>
@@ -157,7 +158,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Realizar la solicitud DELETE usando Axios
-                axios.delete(`/eliminar-detalle-pago/${detalleId}`)
+                axios.delete(`/eliminar-detalle-pago1/${detalleId}`)
                     .then(response => {
                         if (response.data.success) {
                             // Eliminación exitosa, mostrar mensaje de éxito
@@ -180,8 +181,9 @@
     }
 </script>
 <script>
+
     $(document).ready(function() {
-        $('#pagos').DataTable({
+        $('#pagos1').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -252,7 +254,7 @@
     }); 
 
         // Agregar confirmación antes de eliminar la incidencia
-        $('#pagos').on('click', '.btn-danger', function (e) {
+        $('#pagos1').on('click', '.btn-danger', function (e) {
             e.preventDefault();
             var form = this.form;
             Swal.fire({
