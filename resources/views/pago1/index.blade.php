@@ -81,6 +81,7 @@
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
+                                        <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
                                         
                                         </td>
                                     </tr>
@@ -142,7 +143,45 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    function eliminarDetalle(detalleId) {
+        // Utilizar SweetAlert2 para la confirmación
+        Swal.fire({
+            title: '¿Estás seguro de eliminar esta cuota?',
+            text: "Esta acción no se puede revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Realizar la solicitud DELETE usando Axios
+                axios.delete(`/eliminar-detalle-pago1/${detalleId}`)
+                    .then(response => {
+                        if (response.data.success) {
+                            // Eliminación exitosa, mostrar mensaje de éxito
+                            Swal.fire('Eliminado', 'La cuota ha sido eliminado correctamente', 'success').then(() => {
+                                // Recargar la página o actualizar la vista si es necesario
+                                location.reload();
+                            });
+                        } else {
+                            // Mostrar mensaje de error si la eliminación no fue exitosa
+                            Swal.fire('Error', 'Hubo un error al eliminar la cuota', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        // Mostrar mensaje de error si hay un problema con la solicitud
+                        console.error('Error al eliminar la cuota:', error);
+                        Swal.fire('Error', 'Hubo un error al procesar la solicitud', 'error');
+                    });
+            }
+        });
+    }
+</script>
+<script>
+
     $(document).ready(function() {
         $('#pagos1').DataTable({
             dom: 'Bfrtip',

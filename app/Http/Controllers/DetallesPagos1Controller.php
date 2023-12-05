@@ -32,6 +32,20 @@ class DetallesPagos1Controller extends Controller
         return redirect()->back()->with('success', 'Detalle agregado exitosamente');
     }
     
+    public function eliminar($detalleId)
+    {
+        try {
+            // Buscar el detalle de pago por ID
+            $detallePago = Detalle_Pagos1::findOrFail($detalleId);
+    
+            // Eliminar el detalle de pago
+            $detallePago->delete();
+    
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
 
 
     public function index()
