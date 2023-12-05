@@ -16,4 +16,8 @@ class Juridicas_Naturales extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'numero_expediente', 'numero_expediente');
+    }
 }
