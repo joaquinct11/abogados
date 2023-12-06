@@ -82,7 +82,6 @@
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
-                                        
                                         </td>
                                     </tr>
                                 @endforeach

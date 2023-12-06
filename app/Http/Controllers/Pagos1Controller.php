@@ -87,7 +87,7 @@ class Pagos1Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $pago1=Pagos::find($id);
+        $pago1=Pagos1::find($id);
         $pago1->delete();
         return redirect('/pagos1');
     }
