@@ -22,6 +22,7 @@
             <th scope="col">OTROS</th>
             <th scope="col">FECHA INGRESO</th>
             <th scope="col">FECHA FIN</th>
+            <th scope="col">FECHA CREACION</th>
             <th scope="col">DRIVE</th>
             <th scope="col">OPCIONES</th>
         </tr>
@@ -38,6 +39,7 @@
                 <td>{{$juridica_natural->otros}}</td>
                 <td>{{$juridica_natural->fecha_ingreso}}</td>
                 <td>{{$juridica_natural->fecha_fin}}</td>
+                <td>{{$juridica_natural->created_at}}</td>
                 <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1feEux2M-DDGCVmmronGbBqPYsaAMoNIe?usp=drive_link" target="_blank">Drive</a></td>
                 <td>
                     <form action="{{ route('juridicas_naturales.destroy', $juridica_natural->id) }}" method="POST" style="display: inline">
@@ -125,6 +127,7 @@
                 }
             ],
         "pageLength": 10,
+        "order":[[8,'desc']],
             language: {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
