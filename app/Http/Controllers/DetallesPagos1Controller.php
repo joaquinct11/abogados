@@ -48,6 +48,8 @@ class DetallesPagos1Controller extends Controller
     }
 
 
+    
+
     public function index()
     {
         //
