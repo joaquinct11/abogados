@@ -88,6 +88,7 @@ class Pagos2Controller extends Controller
     public function destroy(string $id)
     {
         $pago2=Pagos2::find($id);
+        $pago2->detallesPagos2()->delete();
         $pago2->delete();
         return redirect('/pagos2');
     }
