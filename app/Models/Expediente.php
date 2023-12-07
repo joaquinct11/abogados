@@ -36,4 +36,9 @@ class Expediente extends Model
     {
         return $this->hasMany(Pago::class, 'numero_expediente', 'numero_expediente');
     }
+
+    public function detallesPagos()
+{
+    return $this->hasMany(SubActo::class, 'expediente_id');
+}
 }

@@ -149,6 +149,7 @@ class PropiedadesController extends Controller
     public function destroy(string $id_expediente)
     {
         $expediente=Expediente::find($id_expediente);
+        $expediente->detallesPagos()->delete();
         $expediente->delete();
         return redirect('/propiedades');
     }

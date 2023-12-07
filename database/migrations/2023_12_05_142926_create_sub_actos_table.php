@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('sub_actos', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_expediente');
-            $table->foreign('numero_expediente')->references('numero_expediente')->on('expedientes');
+            $table->unsignedBigInteger('expediente_id'); // Cambia a clave foránea de tipo integer
+            $table->foreign('expediente_id')->references('id')->on('expedientes'); // Referencia la clave primaria 'id' de la tabla 'expedientes'
+            $table->string('subacto')->nullable();
             $table->string('ubicacion')->nullable();
             $table->string('intervinientes')->nullable();
             $table->date('fecha_fin')->nullable();

@@ -40,7 +40,7 @@
                 <td>{{$juridica_natural->fecha_ingreso}}</td>
                 <td>{{$juridica_natural->fecha_fin}}</td>
                 <td>{{$juridica_natural->created_at}}</td>
-                <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1feEux2M-DDGCVmmronGbBqPYsaAMoNIe?usp=drive_link" target="_blank">Drive</a></td>
+                <td><i class="fab fa-google-drive"></i> <a href="https://drive.google.com/drive/folders/1c9RDsl0jWmHDqKylU2R0ueADLAXJFqCT?usp=sharing" target="_blank">Drive</a></td>
                 <td>
                     <form action="{{ route('juridicas_naturales.destroy', $juridica_natural->id) }}" method="POST" style="display: inline">
                         <a href="/juridicas_naturales/{{ $juridica_natural->id }}/edit" class="btn btn-info">

@@ -77,7 +77,7 @@
                     <p>ID del Expediente: {{$propiedad->numero_expediente}} </p>
 
                     <!-- Tabla para detalles adicionales -->
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-detalles">
                         <thead>
                             <tr>
                                 <th>Sub Acto</th>
@@ -92,11 +92,11 @@
                             @if ($propiedad->detallesPagos)
                                 @foreach ($propiedad->detallesPagos as $detalle)
                                     <tr>
-                                        <td>{{$detalle->adelanto}}</td>
-                                        <td>{{$detalle->fecha_adelanto}}</td>
-                                        <td>{{$detalle->detalle_adelanto}}</td>
-                                        <td>{{$detalle->fecha_adelanto}}</td>
-                                        <td>{{$detalle->detalle_adelanto}}</td>
+                                        <td>{{$detalle->subacto}}</td>
+                                        <td>{{$detalle->ubicacion}}</td>
+                                        <td>{{$detalle->intervinientes}}</td>
+                                        <td>{{$detalle->created_at}}</td>
+                                        <td>{{$detalle->fecha_fin}}</td>
                                         <td>
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
                                         </td>
@@ -111,30 +111,33 @@
                     </table>
 
                     <!-- Formulario para agregar más detalles -->
-                    <form action="" method="POST">
+                    <form action="{{ route('agregar.detalle.subacto', $propiedad->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="adelanto">Sub Acto:</label>
-                            <input type="money" class="form-control" name="adelanto" required>
+                            <label for="subacto">Sub Acto:</label>
+                            <input type="money" class="form-control" name="subacto" required>
                         </div>
                         <div class="form-group">
-                            <label for="detalle_adelanto">Ubicación:</label>
-                            <input type="text" class="form-control" name="detalle_adelanto" required>
+                            <label for="ubicacion">Ubicación:</label>
+                            <input type="text" class="form-control" name="ubicacion" required>
                         </div>
                         <div class="form-group">
-                            <label for="detalle_adelanto">Intervinientes:</label>
-                            <input type="text" class="form-control" name="detalle_adelanto" required>
+                            <label for="intervinientes">Intervinientes:</label>
+                            <input type="text" class="form-control" name="intervinientes" required>
                         </div>
                         <div class="form-group">
-                            <label for="fecha_adelanto">Fecha Inicio:</label>
-                            <input type="date" class="form-control" name="fecha_adelanto" required>
+                            <label for="created_at">Fecha Inicio:</label>
+                            <input type="date" class="form-control" name="created_at" required>
                         </div>
                         <div class="form-group">
-                            <label for="fecha_adelanto">Fecha Fin:</label>
-                            <input type="date" class="form-control" name="fecha_adelanto" required>
+                            <label for="fecha_fin">Fecha Fin:</label>
+                            <input type="date" class="form-control" name="fecha_fin" required>
                         </div>
+                        <input type="hidden" name="numero_expediente" value="{{ $propiedad->numero_expediente }}">
+                        <!-- Añade un campo oculto con el número de expediente -->
                         <button type="submit" class="btn btn-primary">Agregar Detalle</button>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -167,6 +170,43 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function eliminarDetalle(detalleId) {
+        // Utilizar SweetAlert2 para la confirmación
+        Swal.fire({
+            title: '¿Estás seguro de eliminar este subacto?',
+            text: "Esta acción no se puede revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Realizar la solicitud DELETE usando Axios
+                axios.delete(`/eliminar-detalle-subacto/${detalleId}`)
+                    .then(response => {
+                        if (response.data.success) {
+                            // Eliminación exitosa, mostrar mensaje de éxito
+                            Swal.fire('Eliminado', 'La cuota ha sido eliminado correctamente', 'success').then(() => {
+                                // Recargar la página o actualizar la vista si es necesario
+                                location.reload();
+                            });
+                        } else {
+                            // Mostrar mensaje de error si la eliminación no fue exitosa
+                            Swal.fire('Error', 'Hubo un error al eliminar el subacto', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        // Mostrar mensaje de error si hay un problema con la solicitud
+                        console.error('Error al eliminar el subacto:', error);
+                        Swal.fire('Error', 'Hubo un error al procesar la solicitud', 'error');
+                    });
+            }
+        });
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('#propiedades').DataTable({
@@ -304,4 +344,77 @@
             }
         });
     </script>
+<script>
+   $(document).ready(function() {
+    // Configuración de DataTables para la tabla dentro del modal
+    var tableDetalles = $('.table-detalles').DataTable({
+        "pageLength": 2,
+        "searching": false,
+        "lengthChange": false,
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        },
+            "columnDefs": [
+                {
+                    "type": "date",
+                    "targets": [3, 4], // Indica las columnas que contienen fechas (empezando desde 0)
+                    "render": function (data, type, row) {
+                        // Utiliza moment.js para formatear la fecha
+                        return moment(data).format('DD-MM-YYYY');
+                    }
+                }
+            ],
+            "drawCallback": function (settings) {
+                    console.log('drawCallback ejecutado'); // Agrega esto para verificar si se ejecuta correctamente
+
+                    // Aplicar colores a las filas después de cada dibujo de la tabla
+                    $('.table-detalles tbody tr').each(function () {
+                        var fechaInicio = $(this).find('td:eq(3)').text();
+                        var fechaIngresoMoment = moment(fechaInicio, 'DD-MM-YYYY');
+                        var hoy = moment();
+
+                        var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
+
+                        console.log('Días de diferencia:', diasDiferencia); // Agrega esto para verificar los días de diferencia
+
+                        if (diasDiferencia >= 5) {
+                            $(this).css('background-color', '#FADBD8');
+                        } else if (diasDiferencia >= 3) {
+                            $(this).css('background-color', '#FDEBD0');
+                        } else if (diasDiferencia <= 2) {
+                            $(this).css('background-color', '#D5F5E3');
+                        }
+                    });
+                }
+
+    });
+
+    // Resto de tu código...
+});
+</script>
 @stop
