@@ -35,6 +35,7 @@ class DetallesPagosController extends Controller
     public function eliminar($detalleId)
 {
     try {
+        
         // Buscar el detalle de pago por ID
         $detallePago = Detalle_Pagos::findOrFail($detalleId);
 
