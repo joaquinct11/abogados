@@ -16,8 +16,26 @@ class Juridicas_Naturales extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+    protected $fillable = [
+        'numero_expediente',
+        'id_usuario',
+        'id_area',
+        'cliente',
+        'nro_expediente',
+        'fecha_ingreso',
+        'fecha_fin',
+        'acto',
+        'otros',
+    ]; 
+
+    protected $table = 'juridicas__naturales';
+
     public function pagos()
     {
         return $this->hasMany(Pago::class, 'numero_expediente', 'numero_expediente');
+    }
+    public function detallesPagos2()
+    {
+        return $this->hasMany(SubActo2::class, 'expediente_id');
     }
 }

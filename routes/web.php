@@ -13,6 +13,7 @@ use App\Http\Controllers\Pagos2Controller;
 use App\Http\Controllers\DetallesPagos2Controller;
 use App\Http\Controllers\DetallesPagos1Controller;
 use App\Http\Controllers\SubActosController;
+use App\Http\Controllers\SubActos2Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,8 @@ Route::post('/agregar-detalle-subacto/{propiedad}', [SubActosController::class, 
 
 Route::delete('/eliminar-detalle-subacto/{detalleId}', [SubActosController::class, 'eliminar'])->name('eliminar.detalle.subacto');
 
+Route::post('/agregar-detalle-subacto2/{juridica_natural}', [SubActos2Controller::class, 'agregarDetallePago2'])->name('agregar.detalle.subacto2');
+Route::delete('/eliminar-detalle-subacto2/{detalleId}', [SubActos2Controller::class, 'eliminar'])->name('eliminar.detalle.subacto2');
 
 
 

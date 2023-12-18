@@ -149,7 +149,10 @@ class Juridicas_NaturalesController extends Controller
     public function destroy(string $id_expediente)
     {
         $expediente=Juridicas_Naturales::find($id_expediente);
+        $expediente->detallesPagos2()->delete();
         $expediente->delete();
         return redirect('/juridicas_naturales');
     }
+
+   
 }
