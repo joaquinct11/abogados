@@ -152,6 +152,7 @@ class JudicialesController extends Controller
     public function destroy(string $id_expediente)
     {
         $expediente=Judiciales::find($id_expediente);
+        $expediente->detallesPagos1()->delete();
         $expediente->delete();
         return redirect('/judiciales');
     }

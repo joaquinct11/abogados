@@ -14,6 +14,7 @@ use App\Http\Controllers\DetallesPagos2Controller;
 use App\Http\Controllers\DetallesPagos1Controller;
 use App\Http\Controllers\SubActosController;
 use App\Http\Controllers\SubActos2Controller;
+use App\Http\Controllers\SubActos1Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,8 +59,11 @@ Route::post('/agregar-detalle-pago1/{pago}', [DetallesPagos1Controller::class, '
 Route::delete('/eliminar-detalle-pago/{detalleId}', [DetallesPagosController::class, 'eliminar'])->name('eliminar.detalle.pago');
 Route::delete('/eliminar-detalle-pago1/{detalleId}', [DetallesPagos1Controller::class, 'eliminar'])->name('eliminar.detalle.pago1');
 Route::post('/agregar-detalle-subacto/{propiedad}', [SubActosController::class, 'agregarDetallePago'])->name('agregar.detalle.subacto');
+Route::post('/agregar-detalle-subacto1/{judicial}', [SubActos1Controller::class, 'agregarDetallePago1'])->name('agregar.detalle.subacto1');
 
 Route::delete('/eliminar-detalle-subacto/{detalleId}', [SubActosController::class, 'eliminar'])->name('eliminar.detalle.subacto');
+Route::delete('/eliminar-detalle-subacto1/{detalleId}', [SubActos1Controller::class, 'eliminar'])->name('eliminar.detalle.subacto1');
+
 
 Route::post('/agregar-detalle-subacto2/{juridica_natural}', [SubActos2Controller::class, 'agregarDetallePago2'])->name('agregar.detalle.subacto2');
 Route::delete('/eliminar-detalle-subacto2/{detalleId}', [SubActos2Controller::class, 'eliminar'])->name('eliminar.detalle.subacto2');
