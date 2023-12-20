@@ -6,10 +6,18 @@
 @stop
 
 @section('content')
+
 <br>
+@can('Admin')
 <a href="juridicas_naturales/create" class="btn btn-success">
     <i class="fas fa-fw fa-file"></i> AGREGAR CASO
 </a>
+@endcan
+@can('Secretaria')
+<a href="juridicas_naturales/create" class="btn btn-success">
+    <i class="fas fa-fw fa-file"></i> AGREGAR CASO
+</a>
+@endcan
 <hr>
 <table id="juridicas_naturales" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
     <thead class="bg-primary text-white">
@@ -45,15 +53,19 @@
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detalleModal{{$juridica_natural->numero_expediente}}">
                     <i class="fas fa-search"></i>
                     </button>
+                        @can('Admin')
                         <form action="{{ route('juridicas_naturales.destroy', $juridica_natural->id) }}" method="POST" style="display: inline">
                         <a href="/juridicas_naturales/{{ $juridica_natural->id }}/edit" class="btn btn-primary">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
+                        @can('Admin')
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-trash-alt"></i>
                         </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

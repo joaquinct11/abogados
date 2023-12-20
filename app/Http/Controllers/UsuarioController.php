@@ -37,7 +37,7 @@ class UsuarioController extends Controller
         $domicilio = $request->get('domicilio');
         $telefono = $request->get('telefono');
         $email = $request->get('email');
-        $id_rol = $request->get('id_rol');
+        $tipo = $request->get('tipo');
         $id_identidad = $request->get('id_identidad');
         $identidad = $request->get('identidad');
         $password = $request->get('password');
@@ -59,7 +59,7 @@ class UsuarioController extends Controller
             $usuarios->domicilio = $domicilio;
             $usuarios->telefono = $telefono;
             $usuarios->email = $email;
-            $usuarios->id_rol = $id_rol;
+            $usuarios->tipo = $tipo;
             $usuarios->id_identidad = $id_identidad;
             $usuarios->identidad = $identidad;
             $usuarios->password = bcrypt($password);
@@ -93,7 +93,7 @@ class UsuarioController extends Controller
         $name = $request->get('name');
         $ap_paterno = $request->get('ap_paterno');
         $ap_materno = $request->get('ap_materno');
-        $id_rol = $request->get('id_rol');
+        $tipo = $request->get('tipo');
         $domicilio = $request->get('domicilio');
         $telefono = $request->get('telefono');
         $email = $request->get('email');
@@ -110,7 +110,7 @@ class UsuarioController extends Controller
             $usuario->name = $request->get('name');
             $usuario->ap_paterno = $request->get('ap_paterno');
             $usuario->ap_materno = $request->get('ap_materno');
-            $usuario->id_rol = $request->get('id_rol');
+            $usuario->tipo = $request->get('tipo');
             $usuario->domicilio = $request->get('domicilio');
             $usuario->telefono = $request->get('telefono');
             $usuario->email = $request->get('email');

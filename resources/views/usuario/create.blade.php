@@ -37,12 +37,12 @@
             
             <div class="mb-3">
             <label for="" class="form-label">ROL</label>
-                <select name="id_rol" id="id_rol" class="form-control" tabindex="1">
-                    <option value="1">Admin</option>
-                    <option value="2">Secretaria</option>
-                    <option value="3">Propiedades</option>
-                    <option value="4">Juridicas</option>
-                    <option value="5">Judiciales</option>
+                <select name="tipo" id="tipo" class="form-control" tabindex="1">
+                    <option value="Admin">Admin</option>
+                    <option value="Secretaria">Secretaria</option>
+                    <option value="Propiedades">Propiedades</option>
+                    <option value="Juridicas">Juridicas</option>
+                    <option value="Judiciales">Judiciales</option>
                 </select>
             </div>
             <div class="mb-3">

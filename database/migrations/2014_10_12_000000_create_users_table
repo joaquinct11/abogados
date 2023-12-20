@@ -24,9 +24,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('id_identidad');
             $table->foreign('id_identidad')->references('id_identidad')->on('identidad');
-            $table->unsignedBigInteger('id_rol');
+            $table->string('tipo');
             $table->string('identidad');
-            $table->foreign('id_rol')->references('id_rol')->on('rol');
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

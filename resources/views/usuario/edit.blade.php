@@ -35,9 +35,12 @@
         </div>
         <div class="col-md-6">
             <label for="" class="form-label">ROL</label>
-            <select id="id_rol" name="id_rol" class="form-control">
-                <option value="1" @if($usuario->id_rol == 'Admin') selected @endif>Admin</option>
-                <option value="2" @if($usuario->id_rol == 'Secretaria') selected @endif>Secretaria</option>
+            <select id="tipo" name="tipo" class="form-control">
+                <option value="Admin" @if($usuario->tipo == 'Admin') selected @endif>Admin</option>
+                <option value="Secretaria" @if($usuario->tipo == 'Secretaria') selected @endif>Secretaria</option>
+                <option value="Propiedades" @if($usuario->tipo == 'Propiedades') selected @endif>Propiedades</option>
+                <option value="Juridicas" @if($usuario->tipo == 'Juridicas') selected @endif>Juridicas</option>
+                <option value="Judiciales" @if($usuario->tipo == 'Judiciales') selected @endif>Judiciales</option>
             </select>
         </div>
     </div>

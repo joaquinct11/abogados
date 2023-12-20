@@ -17,7 +17,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
     
+
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'id_rol');
@@ -67,4 +69,29 @@ class User extends Authenticatable
     public function adminlte_desc(){
         return 'Admin';
     }
+    
+    public function isAdmin()
+{
+    return $this->tipo === 'Admin'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
+
+public function isSecretaria()
+{
+    return $this->tipo === 'Secretaria'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
+
+public function isPropiedades()
+{
+    return $this->tipo === 'Propiedades'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
+
+public function isJudiciales()
+{
+    return $this->tipo === 'Judiciales'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
+
+public function isJuridicas()
+{
+    return $this->tipo === 'Juridicas'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
 }
