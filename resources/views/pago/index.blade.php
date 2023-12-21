@@ -81,7 +81,9 @@
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
+                                        @can('Admin')
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
+                                        @endcan
                                         </td>
                                     </tr>
                                 @endforeach

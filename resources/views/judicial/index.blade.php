@@ -12,6 +12,7 @@
 <a href="judiciales/create" class="btn btn-success">
     <i class="fas fa-fw fa-file"></i> AGREGAR CASO
 </a>
+
 @endcan
 @can('Secretaria')
 <a href="judiciales/create" class="btn btn-success">
