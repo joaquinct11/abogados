@@ -40,7 +40,7 @@
                 <select name="tipo" id="tipo" class="form-control" tabindex="1">
                     <option value="Admin">Admin</option>
                     <option value="Secretaria">Secretaria</option>
-                    <option value="Secretaria2">Secretaria2</option>
+                    <option value="Asistente_Secretaria">Asistente Secretaria</option>
                     <option value="Propiedades">Propiedades</option>
                     <option value="Juridicas">Juridicas</option>
                     <option value="Judiciales">Judiciales</option>

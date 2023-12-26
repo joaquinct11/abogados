@@ -361,7 +361,7 @@ return [
         [
             'text'    => 'Administrativos (PAGOS)',
             'icon'    => 'fas fa-fw fa-donate',
-            'can'=> ['Admin','Secretaria2'],
+            'can'=> ['Admin','Asistente_Secretaria'],
             'submenu' => [
                 [
                     'text' => 'Propiedades',

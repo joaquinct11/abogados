@@ -38,7 +38,7 @@
             <select id="tipo" name="tipo" class="form-control">
                 <option value="Admin" @if($usuario->tipo == 'Admin') selected @endif>Admin</option>
                 <option value="Secretaria" @if($usuario->tipo == 'Secretaria') selected @endif>Secretaria</option>
-                <option value="Secretaria2" @if($usuario->tipo == 'Secretaria2') selected @endif>Secretaria2</option>
+                <option value="Asistente_Secretaria" @if($usuario->tipo == 'Asistente_Secretaria') selected @endif>Asistente Secretaria</option>
                 <option value="Propiedades" @if($usuario->tipo == 'Propiedades') selected @endif>Propiedades</option>
                 <option value="Juridicas" @if($usuario->tipo == 'Juridicas') selected @endif>Juridicas</option>
                 <option value="Judiciales" @if($usuario->tipo == 'Judiciales') selected @endif>Judiciales</option>
