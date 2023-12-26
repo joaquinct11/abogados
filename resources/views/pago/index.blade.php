@@ -73,6 +73,7 @@
                                 <th>Opciones</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             @if ($pago->detallesPagos)
                                 @foreach ($pago->detallesPagos as $detalle)
@@ -81,7 +82,9 @@
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
                                         <td>
+                                        
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
+                                        
                                         </td>
                                     </tr>
                                 @endforeach
