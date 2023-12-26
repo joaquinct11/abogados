@@ -97,7 +97,9 @@
                                 <th>Intervinientes</th>
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th> 
+                                @can('Admin')
                                 <th>Opciones</th>
+                                @endcan
                             </tr>   
                         </thead>
                         <tbody>
@@ -109,9 +111,11 @@
                                         <td>{{$detalle->intervinientes}}</td>
                                         <td>{{$detalle->created_at}}</td>
                                         <td>{{$detalle->fecha_fin}}</td>
+                                        @can('Admin')
                                         <td>
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             @else

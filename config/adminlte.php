@@ -336,6 +336,7 @@ return [
         [
             'text'    => 'ÁREAS',
             'icon'    => 'fas fa-fw fa-folder',
+            'can' => ['Admin', 'Propiedades','Judiciales','Juridicas','Secretaria'],
             'submenu' => [
                 [
                     'text' => 'Propiedades',
@@ -360,7 +361,7 @@ return [
         [
             'text'    => 'Administrativos (PAGOS)',
             'icon'    => 'fas fa-fw fa-donate',
-            'can'=> 'Admin',
+            'can'=> ['Admin','Secretaria2'],
             'submenu' => [
                 [
                     'text' => 'Propiedades',

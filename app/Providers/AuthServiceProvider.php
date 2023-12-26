@@ -31,6 +31,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isSecretaria(); // Asegúrate de tener el método isPropiedades() definido en tu modelo de usuario
         });
 
+        Gate::define('Secretaria2', function ($user) {
+            return $user->isSecretaria2(); // Asegúrate de tener el método isPropiedades() definido en tu modelo de usuario
+        });
+
         Gate::define('Propiedades', function ($user) {
             return $user->isPropiedades(); // Asegúrate de tener el método isPropiedades() definido en tu modelo de usuario
         });

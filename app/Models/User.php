@@ -80,6 +80,11 @@ public function isSecretaria()
     return $this->tipo === 'Secretaria'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
 }
 
+public function isSecretaria2()
+{
+    return $this->tipo === 'Secretaria2'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
+}
+
 public function isPropiedades()
 {
     return $this->tipo === 'Propiedades'; // Asegúrate de ajustar esto según tu lógica de determinación de roles
