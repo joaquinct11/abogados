@@ -49,7 +49,7 @@
 <!-- Modal -->
 @foreach ($pagos2 as $pago2)
     <div class="modal fade" id="detalleModal{{$pago2->id_pagos2}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Detalles del Pago</h5>
@@ -70,6 +70,7 @@
                                 <th>Adelanto</th>
                                 <th>Fecha de Adelanto</th>
                                 <th>Detalle</th>
+                                <th>Nro Comprobante</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -80,6 +81,7 @@
                                         <td>{{$detalle->adelanto}}</td>
                                         <td>{{$detalle->fecha_adelanto}}</td>
                                         <td>{{$detalle->detalle_adelanto}}</td>
+                                        <td>{{$detalle->nro_comprobante}}</td>
                                         <td>
                                         <button class="btn btn-danger" onclick="eliminarDetalle({{ $detalle->id }})">Eliminar</button>
                                         </td>
@@ -96,17 +98,25 @@
                     <!-- Formulario para agregar más detalles -->
                     <form action= "{{ route('agregar.detalle.pago2', $pago2->id_pagos2) }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="adelanto">Monto del Adelanto:</label>
-                            <input type="money" class="form-control" name="adelanto" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="adelanto">Monto del Adelanto:</label>
+                                <input type="money" class="form-control" name="adelanto" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="fecha_adelanto">Fecha de Adelanto:</label>
+                                <input type="date" class="form-control" name="fecha_adelanto" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="fecha_adelanto">Fecha de Adelanto:</label>
-                            <input type="date" class="form-control" name="fecha_adelanto" required>
-                        </div>
+
                         <div class="form-group">
                             <label for="detalle_adelanto">Detalle:</label>
                             <input type="text" class="form-control" name="detalle_adelanto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nro_comprobante">Nro Comprobante:</label>
+                            <input type="text" class="form-control" name="nro_comprobante" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Agregar Detalle</button>
                     </form>

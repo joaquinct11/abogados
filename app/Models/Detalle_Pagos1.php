@@ -12,7 +12,8 @@ class Detalle_Pagos1 extends Model
     // En el modelo DetallePago
     protected $table = 'detalles_pagos1';
 
-    protected $fillable = ['adelanto', 'fecha_adelanto', 'detalle_adelanto'];
+    protected $fillable = ['adelanto', 'fecha_adelanto', 'detalle_adelanto',
+        'nro_comprobante'];
 
     // En tu modelo Pago
     public function pago1()

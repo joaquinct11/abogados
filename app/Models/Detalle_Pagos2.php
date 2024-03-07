@@ -10,7 +10,7 @@ class Detalle_Pagos2 extends Model
     use HasFactory;
     protected $table = 'detalles_pagos2';
 
-    protected $fillable = ['adelanto', 'fecha_adelanto', 'detalle_adelanto'];
+    protected $fillable = ['adelanto', 'fecha_adelanto', 'detalle_adelanto','nro_comprobante'];
 
     // En tu modelo Pago
     public function pago2()

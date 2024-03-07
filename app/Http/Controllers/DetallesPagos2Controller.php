@@ -18,6 +18,7 @@ class DetallesPagos2Controller extends Controller
               'adelanto' => 'required|numeric',
               'fecha_adelanto' => 'required|date',
               'detalle_adelanto' => 'required|string',
+              'nro_comprobante' => 'required|string',
           ]);
       
           // Agrega el nuevo detalle al pago
@@ -25,6 +26,7 @@ class DetallesPagos2Controller extends Controller
               'adelanto' => $request->input('adelanto'),
               'fecha_adelanto' => $request->input('fecha_adelanto'),
               'detalle_adelanto' => $request->input('detalle_adelanto'),
+              'nro_comprobante' => $request->input('nro_comprobante'),
           ]);
       
           // Depuración: 
