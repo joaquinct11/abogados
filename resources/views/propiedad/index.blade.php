@@ -312,23 +312,29 @@
                 }
             ],
             "drawCallback": function (settings) {
-                // Aplicar colores a las filas después de cada dibujo de la tabla
-                $('#propiedades tbody tr').each(function () {
-                    var fechaIngreso = $(this).find('td:eq(6)').text();
-                    var fechaIngresoMoment = moment(fechaIngreso, 'DD-MM-YYYY');
-                    var hoy = moment();
+            // Aplicar colores a las filas después de cada dibujo de la tabla
+            $('#propiedades tbody tr').each(function () {
+                var fechaInicio = $(this).find('td:eq(6)').text();
+                var fechaFin = $(this).find('td:eq(7)').text();
 
-                    var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
+                var fechaInicioMoment = moment(fechaInicio, 'DD-MM-YYYY');
+                var fechaFinMoment = moment(fechaFin, 'DD-MM-YYYY');
 
-                    if (diasDiferencia >= 5) {
-                        $(this).css('background-color', '#FADBD8');
-                    } else if (diasDiferencia >= 3) {
-                        $(this).css('background-color', '#FDEBD0');
-                    } else if (diasDiferencia <= 2) {
-                        $(this).css('background-color', '#D5F5E3');
-                    }
-                });
-            }
+                var diasDiferencia = fechaFinMoment.diff(fechaInicioMoment, 'days');
+
+                if (diasDiferencia <= 727) {
+                    // Verde menta claro para el período hasta 2 años menos los últimos 3 días
+                    $(this).css('background-color', '#D5F5E3');
+                } else if (diasDiferencia <= 730) {
+                    // Melocotón claro para los últimos 3 días del período de 2 años
+                    $(this).css('background-color', '#FDEBD0');
+                } else {
+                    // Rosa claro para el período después de los 2 años
+                    $(this).css('background-color', '#FADBD8');
+                }
+            });
+        }
+
         });
 
         // Agregar confirmación antes de eliminar la incidencia
