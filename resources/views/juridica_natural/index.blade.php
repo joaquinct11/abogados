@@ -311,7 +311,7 @@
             ],
             "drawCallback": function (settings) {
             // Aplicar colores a las filas después de cada dibujo de la tabla
-            $('#propiedades tbody tr').each(function () {
+            $('#juridicas_naturales tbody tr').each(function () {
                 var fechaInicio = $(this).find('td:eq(6)').text();
                 var fechaFin = $(this).find('td:eq(7)').text();
 
