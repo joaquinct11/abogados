@@ -237,131 +237,134 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('#judiciales').DataTable({
-            
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'copy',
-                    className: 'btn btn-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7] // Especifica las columnas a exportar
+        // Verifica si la tabla ya ha sido inicializada
+        if (!$.fn.dataTable.isDataTable('#judiciales')) {
+            $('#judiciales').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        className: 'btn btn-secondary',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8] // Especifica las columnas a exportar
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-secondary',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8] // Especifica las columnas a exportar
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-secondary',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8] // Especifica las columnas a exportar
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'btn btn-secondary',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8] // Especifica las columnas a exportar
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        className: 'btn btn-secondary',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8] // Especifica las columnas a exportar
+                        }
+                    }
+                ],
+                "pageLength": 10,
+                "order": [[9, 'desc']],
+                language: {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
                     }
                 },
-                {
-                    extend: 'csv',
-                    className: 'btn btn-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7] // Especifica las columnas a exportar
+                "columnDefs": [
+                    {
+                        "type": "date",
+                        "targets": [7, 8], // Indica las columnas que contienen fechas (empezando desde 0)
+                        "render": function (data, type, row) {
+                            // Utiliza moment.js para formatear la fecha
+                            return moment(data).format('DD-MM-YYYY');
+                        }
                     }
-                },
-                {
-                    extend: 'excel',
-                    className: 'btn btn-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7] // Especifica las columnas a exportar
-                    }
-                },
-                {
-                    extend: 'pdf',
-                    className: 'btn btn-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7] // Especifica las columnas a exportar
-                    }
-                },
-                {
-                    extend: 'print',
-                    className: 'btn btn-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7] // Especifica las columnas a exportar
-                    }
-                }
-            ],
-        "pageLength": 10,
-        "order":[[9,'desc']],
-            language: {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                },
-                "buttons": {
-                    "copy": "Copiar",
-                    "colvis": "Visibilidad"
-                }
-            },
-            "columnDefs": [
-                {
-                    "type": "date",
-                    "targets": [7, 8], // Indica las columnas que contienen fechas (empezando desde 0)
-                    "render": function (data, type, row) {
-                        // Utiliza moment.js para formatear la fecha
-                        return moment(data).format('DD-MM-YYYY');
-                    }
-                }
-            ],
-            "drawCallback": function (settings) {
-            // Aplicar colores a las filas después de cada dibujo de la tabla
-            $('#propiedades tbody tr').each(function () {
-                var fechaInicio = $(this).find('td:eq(6)').text();
-                var fechaFin = $(this).find('td:eq(7)').text();
+                ],
+                "drawCallback": function (settings) {
+                    // Aplicar colores a las filas después de cada dibujo de la tabla
+                    $('#judiciales tbody tr').each(function () {
+                        var fechaInicio = $(this).find('td:eq(7)').text();
+                        var fechaFin = $(this).find('td:eq(8)').text();
 
-                var fechaInicioMoment = moment(fechaInicio, 'DD-MM-YYYY');
-                var fechaFinMoment = moment(fechaFin, 'DD-MM-YYYY');
+                        var fechaInicioMoment = moment(fechaInicio, 'DD-MM-YYYY');
+                        var fechaFinMoment = moment(fechaFin, 'DD-MM-YYYY');
 
-                var diasDiferencia = fechaFinMoment.diff(fechaInicioMoment, 'days');
+                        var diasDiferencia = fechaFinMoment.diff(fechaInicioMoment, 'days');
 
-                if (diasDiferencia <= 1822) {
-                    // Verde menta claro para el período hasta 2 años menos los últimos 3 días
-                    $(this).css('background-color', '#D5F5E3');
-                } else if (diasDiferencia <= 1825) {
-                    // Melocotón claro para los últimos 3 días del período de 2 años
-                    $(this).css('background-color', '#FDEBD0');
-                } else {
-                    // Rosa claro para el período después de los 2 años
-                    $(this).css('background-color', '#FADBD8');
+                        if (diasDiferencia <= 1822) {
+                            // Verde menta claro para el período hasta 2 años menos los últimos 3 días
+                            $(this).css('background-color', '#D5F5E3');
+                        } else if (diasDiferencia <= 1825) {
+                            // Melocotón claro para los últimos 3 días del período de 2 años
+                            $(this).css('background-color', '#FDEBD0');
+                        } else {
+                            // Rosa claro para el período después de los 2 años
+                            $(this).css('background-color', '#FADBD8');
+                        }
+                    });
                 }
             });
         }
-        });
+    });
 
-        // Agregar confirmación antes de eliminar la incidencia
-        $('#judiciales').on('click', '.btn-danger', function (e) {
-            e.preventDefault();
-            var form = this.form;
-            Swal.fire({
-                title: '¿Estás seguro de eliminar este caso?',
-                text: "No podrás revertir esto",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Confirmar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
+    // Agregar confirmación antes de eliminar la incidencia
+    $('#judiciales').on('click', '.btn-danger', function (e) {
+        e.preventDefault();
+        var form = this.form;
+        Swal.fire({
+            title: '¿Estás seguro de eliminar este caso?',
+            text: "No podrás revertir esto",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
         });
     });
 </script>
+
 <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Función para mostrar los detalles del caso en el modal
