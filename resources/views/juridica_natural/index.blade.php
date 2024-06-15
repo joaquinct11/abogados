@@ -405,27 +405,28 @@
                 }
             ],
             "drawCallback": function (settings) {
-                    console.log('drawCallback ejecutado'); // Agrega esto para verificar si se ejecuta correctamente
+            // Aplicar colores a las filas después de cada dibujo de la tabla
+            $('#propiedades tbody tr').each(function () {
+                var fechaInicio = $(this).find('td:eq(6)').text();
+                var fechaFin = $(this).find('td:eq(7)').text();
 
-                    // Aplicar colores a las filas después de cada dibujo de la tabla
-                    $('.table-detalles tbody tr').each(function () {
-                        var fechaInicio = $(this).find('td:eq(3)').text();
-                        var fechaIngresoMoment = moment(fechaInicio, 'DD-MM-YYYY');
-                        var hoy = moment();
+                var fechaInicioMoment = moment(fechaInicio, 'DD-MM-YYYY');
+                var fechaFinMoment = moment(fechaFin, 'DD-MM-YYYY');
 
-                        var diasDiferencia = hoy.diff(fechaIngresoMoment, 'days');
+                var diasDiferencia = fechaFinMoment.diff(fechaInicioMoment, 'days');
 
-                        console.log('Días de diferencia:', diasDiferencia); // Agrega esto para verificar los días de diferencia
-
-                        if (diasDiferencia >= 5) {
-                            $(this).css('background-color', '#FADBD8');
-                        } else if (diasDiferencia >= 3) {
-                            $(this).css('background-color', '#FDEBD0');
-                        } else if (diasDiferencia <= 2) {
-                            $(this).css('background-color', '#D5F5E3');
-                        }
-                    });
+                if (diasDiferencia <= 362) {
+                    // Verde menta claro para el período hasta 2 años menos los últimos 3 días
+                    $(this).css('background-color', '#D5F5E3');
+                } else if (diasDiferencia <= 365) {
+                    // Melocotón claro para los últimos 3 días del período de 2 años
+                    $(this).css('background-color', '#FDEBD0');
+                } else {
+                    // Rosa claro para el período después de los 2 años
+                    $(this).css('background-color', '#FADBD8');
                 }
+            });
+        }
 
     });
 
