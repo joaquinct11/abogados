@@ -17,6 +17,12 @@
     <i class="fas fa-fw fa-file"></i> AGREGAR CASO
 </a>
 @endcan
+
+@can('Asistente_Secretaria')
+<a href="propiedades/create" class="btn btn-success">
+    <i class="fas fa-fw fa-file"></i> AGREGAR CASO
+</a>
+@endcan
 <hr>
 <table id="propiedades" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
     <thead class="bg-primary text-white">

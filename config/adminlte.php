@@ -336,32 +336,32 @@ return [
         [
             'text'    => 'ÁREAS',
             'icon'    => 'fas fa-fw fa-folder',
-            'can' => ['Admin', 'Propiedades','Judiciales','Juridicas','Secretaria'],
+            'can' => ['Admin', 'Propiedades','Judiciales','Juridicas','Secretaria','Asistente_Secretaria'],
             'submenu' => [
                 [
                     'text' => 'Propiedades',
                     'icon' => 'fas fa-fw fa-building',
                     'url' => 'propiedades',
-                    'can' => ['Admin', 'Propiedades','Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
+                    'can' => ['Admin', 'Propiedades','Secretaria','Asistente_Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
                 ],                
                 [
                     'text' => 'Judiciales',
                     'icon'    => 'fas fa-fw fa-file-invoice',
                     'url'  => 'judiciales',
-                        'can' => ['Admin', 'Judiciales','Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
+                        'can' => ['Admin', 'Judiciales','Secretaria','Asistente_Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
                 ],
                 [
                     'text' => 'Jurídicas/Naturales',
                     'icon'    => 'fas fa-fw fa-file',
                     'url'  => 'juridicas_naturales',
-                    'can' => ['Admin', 'Juridicas','Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
+                    'can' => ['Admin', 'Juridicas','Secretaria','Asistente_Secretaria'], // Esto muestra el enlace si el usuario tiene cualquiera de estos dos permisos
                 ],
             ],
         ],
         [
             'text'    => 'Administrativos (PAGOS)',
             'icon'    => 'fas fa-fw fa-donate',
-            'can'=> ['Admin','Asistente_Secretaria'],
+            'can'=> ['Admin','Secretaria'],
             'submenu' => [
                 [
                     'text' => 'Propiedades',
